@@ -7,9 +7,18 @@ services:
             - 3000:3000
         environment:
             - PORT=3000
+        depends_on:
+            - mongo
 
     mongo:
         image: mongo
         environment:
             - MONGO_INITDB_ROOT_USERNAME=uttam
             - MONGO_INITDB_ROOT_PASSWORD=171210
+        volumes:
+            # named volume
+            - mongo-db:/data/db
+
+# have to put all named volumes here because there may be many services using this mongo-db volume
+volumes:
+    mongo-db:

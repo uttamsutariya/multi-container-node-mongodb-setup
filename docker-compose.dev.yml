@@ -6,8 +6,17 @@ services:
             args:
                 - NODE_ENV=development
         volumes:
+            # (bind mount) sync code of current local dir to container /app dir
             - ./:/app
+            # anonymous volume (do not sync node_modules from local dir to container /app dir)
             - /app/node_modules
         environment:
             - NODE_ENV=development
+            - MONGO_USER=uttam
+            - MONGO_PASSWORD=171210
         command: npm run dev
+
+    mongo:
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=uttam
+            - MONGO_INITDB_ROOT_PASSWORD=171210
