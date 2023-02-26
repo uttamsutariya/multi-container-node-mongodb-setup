@@ -1,0 +1,15 @@
+version: "3"
+services:
+    backend:
+        build: .
+        ports:
+            - "5000:8080"
+        volumes:
+            # bind volume (sync code from local dir to container fs, :ro stands for read only in container from local fs)
+            - ./:/app:ro
+            # anonymous volume (can't sync node_modules from local fs)
+            - /app/node_modules
+        environment:
+            - PORT=8080
+        # env_file:
+        #     - ./.env

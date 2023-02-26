@@ -1,0 +1,15 @@
+version: "3"
+services:
+    backend:
+        # custom img
+        build: .
+        ports:
+            - 3000:3000
+        environment:
+            - PORT=3000
+
+    mongo:
+        image: mongo
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=uttam
+            - MONGO_INITDB_ROOT_PASSWORD=171210
