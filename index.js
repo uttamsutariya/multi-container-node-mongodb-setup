@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -16,6 +17,13 @@ mongoose
 		app.listen(port, () => console.log(`server listening on port: ${port}`));
 	})
 	.catch((err) => console.log(err));
+
+// app routes
+const postRoute = require("./routes/post.route");
+
+app.use(express.json());
+
+app.use("/api/v1/posts", postRoute);
 
 app.get("/", (req, res) => {
 	res.send("hi node-docker 👋");
