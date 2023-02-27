@@ -14,6 +14,7 @@ services:
             - NODE_ENV=development
             - MONGO_USER=uttam
             - MONGO_PASSWORD=171210
+            - SESSION_SECRET=uttam1712
         command: npm run dev
 
     mongo:

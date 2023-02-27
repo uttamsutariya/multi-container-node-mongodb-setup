@@ -2,8 +2,10 @@ const router = require("express").Router();
 
 const { getAllPosts, getOnePost, updatePost, deletePost, createPost } = require("../controllers/post.controller");
 
-router.route("/").get(getAllPosts).post(createPost);
+const protect = require("../middlewares/authMiddleware");
 
-router.route("/:id").get(getOnePost).patch(updatePost).delete(deletePost);
+router.route("/").get(protect, getAllPosts).post(protect, createPost);
+
+router.route("/:id").get(protect, getOnePost).patch(protect, updatePost).delete(protect, deletePost);
 
 module.exports = router;
