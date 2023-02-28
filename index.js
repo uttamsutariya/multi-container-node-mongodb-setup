@@ -12,6 +12,7 @@ const {
 
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const redis = require("redis");
 const session = require("express-session");
 const RedisStore = require("connect-redis")(session);
@@ -23,7 +24,9 @@ const redisClient = redis.createClient({
 	},
 });
 
-redisClient.connect().catch(console.error);
+redisClient.connect().catch((error) => {
+	console.error(error);
+});
 
 const app = express();
 
@@ -43,7 +46,9 @@ const postRoute = require("./routes/post.route");
 const userRoute = require("./routes/user.route");
 
 app.use(express.json());
-
+app.use(cors());
+// ip accessible to server (do this if having ip related stuff at serverside bcz we setup nginx)
+app.enable("trust proxy");
 app.use(
 	session({
 		store: new RedisStore({ client: redisClient }),
@@ -62,6 +67,6 @@ app.use(
 app.use("/api/v1/posts", postRoute);
 app.use("/api/v1/users", userRoute);
 
-app.get("/", (req, res) => {
+app.get("/api/v1", (req, res) => {
 	res.send("hi node-docker 👋");
 });
