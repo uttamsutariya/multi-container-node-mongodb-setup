@@ -21,3 +21,9 @@ services:
         environment:
             - MONGO_INITDB_ROOT_USERNAME=uttam
             - MONGO_INITDB_ROOT_PASSWORD=171210
+        ports:
+            - 5000:27017
+
+    nginx:
+        ports:
+            - 3000:80

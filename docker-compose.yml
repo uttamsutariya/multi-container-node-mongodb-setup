@@ -3,8 +3,6 @@ services:
     backend:
         # custom img
         build: .
-        ports:
-            - 3000:3000
         environment:
             - PORT=3000
         depends_on:
@@ -19,11 +17,14 @@ services:
         volumes:
             # named volume
             - mongo-db:/data/db
-        ports:
-            - 5000:27017
 
     redis:
         image: redis
+
+    nginx:
+        image: nginx:stable-alpine
+        volumes:
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
 
 # have to put all named volumes here because there may be many services using this mongo-db volume
 volumes:
