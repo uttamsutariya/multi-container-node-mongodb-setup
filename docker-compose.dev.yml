@@ -12,15 +12,10 @@ services:
             - /app/node_modules
         environment:
             - NODE_ENV=development
-            - MONGO_USER=uttam
-            - MONGO_PASSWORD=171210
             - SESSION_SECRET=uttam1712
         command: npm run dev
 
     mongo:
-        environment:
-            - MONGO_INITDB_ROOT_USERNAME=uttam
-            - MONGO_INITDB_ROOT_PASSWORD=171210
         ports:
             - 5000:27017
 

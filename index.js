@@ -1,14 +1,6 @@
 require("dotenv").config();
 
-const {
-	MONGO_IP,
-	MONGO_PASSWORD,
-	MONGO_USER,
-	MONGO_PORT,
-	REDIS_HOST,
-	REDIS_PORT,
-	SESSION_SECRET,
-} = require("./config");
+const { MONGO_IP, MONGO_PORT, REDIS_HOST, REDIS_PORT, SESSION_SECRET } = require("./config");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -34,7 +26,7 @@ const port = process.env.PORT || 3000;
 
 mongoose.set("strictQuery", true);
 mongoose
-	.connect(`mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`)
+	.connect(`mongodb://${MONGO_IP}:${MONGO_PORT}`)
 	.then(() => {
 		console.log("db connected");
 		app.listen(port, () => console.log(`server listening on port: ${port}`));
