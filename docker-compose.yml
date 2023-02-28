@@ -11,9 +11,6 @@ services:
 
     mongo:
         image: mongo
-        environment:
-            - MONGO_INITDB_ROOT_USERNAME=uttam
-            - MONGO_INITDB_ROOT_PASSWORD=171210
         volumes:
             # named volume
             - mongo-db:/data/db
