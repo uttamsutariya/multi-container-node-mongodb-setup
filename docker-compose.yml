@@ -3,6 +3,7 @@ services:
     backend:
         # custom img
         build: .
+        # by passing image name, we can use both approach of build the image from Dockerfile or can pull from dockerhub
         image: uttam1712/node-app
         environment:
             - PORT=3000
